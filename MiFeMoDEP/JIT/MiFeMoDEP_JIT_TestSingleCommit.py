@@ -13,7 +13,13 @@ with open('./MiFeMoDEP_JIT_RF.pkl', 'rb') as f:
     rf = pickle.load(f)
 
 
-diff_string = input("String of the diff: ")
+##########################
+path_to_diff = ""
+##########################
+
+with open(path_to_diff, "r") as file:
+    diff_string = file.read()
+
 diff_string = preprocess_diff(diff_string)
 
 cb_embeds = get_CodeBERT_context_embeddings(cb_tokenizer, cb_model, diff_string)

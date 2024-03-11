@@ -13,7 +13,13 @@ with open('./MiFeMoDEP_SourceCode_RF.pkl', 'rb') as f:
     rf = pickle.load(f)
 
 
-code_string = input("String of the source code: ")
+##########################
+path_to_code = ""
+##########################
+
+with open(path_to_code, "r") as file:
+    code_string = file.read()
+
 code_string = preprocess_diff(code_string)
 
 cb_embeds = get_CodeBERT_context_embeddings(cb_tokenizer, cb_model, code_string)
