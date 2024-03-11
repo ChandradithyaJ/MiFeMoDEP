@@ -14,10 +14,10 @@ First, the neural network that encodes the PDG is trained with another simple ne
 * Download Repository from GitHub
 * Get the file path of the file you want to check<br>
 * Follow the steps below for testing a Source Code or Git Diff file:
-  * A.  For checking a Source Code file, run one of the following command:(add the filepath to the variable `path_to_file` in the `MiFeMoDEP_SourceCode_TestSingleSourceCode.py` file)
+  * For checking a Source Code file, run one of the following command:(add the filepath to the variable `path_to_file` in the `MiFeMoDEP_SourceCode_TestSingleSourceCode.py` file)
     *   `python ./MiFeMoDEP/MiFeMoDEP/SourceCode/MiFeMoDEP_SourceCode_TestSingleSourceCode.py` or 
     *  `python3 ./MiFeMoDEP/MiFeMoDEP/SourceCode/MiFeMoDEP_SourceCode_TestSingleSourceCode.py` (i.e. run the file `MiFeMoDEP_SourceCode_TestSingleSourceCode.py`)
-  * B. For checking a Git Diff file, run one of the following command:(add the filepath to the variable `path_to_file` in the `MiFeMoDEP_SourceCode_TestSingleCommit.py` file)
+  * For checking a Git Diff file, run one of the following command:(add the filepath to the variable `path_to_file` in the `MiFeMoDEP_SourceCode_TestSingleCommit.py` file)
     *   `python ./MiFeMoDEP/MiFeMoDEP/JIT/MiFeMoDEP_JIT_TestSingleCommit.py` or 
     *   `python3 ./MiFeMoDEP/MiFeMoDEP/JIT/MiFeMoDEP_JIT_TestSingleCommit.py` (i.e. run the file `MiFeMoDEP_JIT_TestSingleCommit.py`)
 * Output will be displayed on terminal
