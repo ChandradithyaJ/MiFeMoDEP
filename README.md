@@ -2,7 +2,7 @@
 
 ## Introduction
 
-We propose MiFeMoDEP, a hybrid Mixed Feature Model for Defect Prediction. Building upon the ideas of the related works, we propose a file-level classification model, which is passed to LIME to rank the lines. Our model deviates from the others with a mixed feature pathway, where the semantic information and flow information are extracted independently and mixed before passing it to a classifier.
+We propose MiFeMoDEP, a Hybrid Mixed Feature Model for Defect Prediction. Building upon the ideas of the related works, we propose a file-level classification model, which is passed to LIME to rank the lines. Our model deviates from the others with a mixed feature pathway, where the semantic information and flow information are extracted independently and mixed before passing it to a classifier.
 
 We also built a dataset for line-level testing from the Defectors Dataset. Each file or commit is given in the Defectors Dataset, and a list of defective lines is the target. This is in contrast to the regularly used dataset, where lines are individual rows.
 
