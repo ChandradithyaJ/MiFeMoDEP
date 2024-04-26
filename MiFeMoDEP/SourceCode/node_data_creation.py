@@ -6,11 +6,12 @@ from networkx.drawing.nx_pydot import read_dot,write_dot
 import os 
 
 path_to = "./"
-graph_root_dir = "Preprocessing_joern/preprocess_graphs_10000/"
+graph_root_dir = "Preprocessing_joern/preprocess_graphs_1200/"
 file_path_list = []
 node_num_list = []
 dictionary_list = []
 
+# converting graph information in .dot files to a .csv for faster training of RGCN
 def write_to_df(path):
     G = read_dot(path+"/export.dot")
     nodes = G.nodes(data=True)
