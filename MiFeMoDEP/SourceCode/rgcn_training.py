@@ -16,13 +16,14 @@ from torch_geometric.utils import k_hop_subgraph
 
 # Define device for computations (CPU or GPU)
 # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# print("device: ",device)
+# print("device: ",device) # while using cuda 
 
 path_to_doc2vec = "./"
 doc2vec_model = Doc2Vec.load(path_to_doc2vec+"doc2vec_model_nodes_from_graphs.bin")
 
 e_types = ['RECEIVER', 'CDG', 'CFG', 'CONDITION', 'BINDS', 'REACHING_DEF', 'PARAMETER_LINK', 'IS_CALL_FOR_IMPORT', 'POST_DOMINATE', 'AST', 'CALL', 'REF', 'CONTAINS', 'INHERITS_FROM', 'TAGGED_BY', 'SOURCE_FILE', 'ARGUMENT', 'CAPTURE', 'DOMINATE', 'EVAL_TYPE']
 def get_edge_num(edge_type):
+    # To convert edge_type to a number
     for i in range(20):
         if(edge_type == e_types[i]):
             return i
@@ -35,25 +36,20 @@ def get_graph_data(graph, truncate_size, padding=False):
   dictionary_list = []
   i=0
   for node in nodes:
+      # truncate when the number of nodes is more than truncate size
       if i >= truncate_size:
         break
       num,dic = node
-      # print(num, end=',')
       mapping[num] = i
+      # getting node embeddings
       dictionary_list.append(doc2vec_model.infer_vector([str(dic)])) 
       i += 1
   nodes_features = torch.Tensor(np.array(dictionary_list))
-  #   changed_nodes = [x for x in range(i)]
-  #   changed_nodes = torch.Tensor(np.array(changed_nodes)).int()
-  # print(changed_nodes)
-  # edge_idx,edge_type = get_edges(edges)
-  # Computing edges
   edge_index_1 = []
   edge_index_2 = []
   edge_type = []
   for edge in edges:
     t0,t1,t2 = edge
-    # print(t0, t1, sep=',', end = '|')
     if t0 not in mapping or t1 not in mapping:
       continue 
     edge_index_1.append(int(mapping[t0]))
@@ -61,10 +57,8 @@ def get_graph_data(graph, truncate_size, padding=False):
     edge_type.append(get_edge_num(t2['label']))
   edge_index = [edge_index_1,edge_index_2]
   edge_idx,edge_type = torch.Tensor(np.array(edge_index)).to(torch.int64),torch.Tensor(np.array(edge_type)).to(torch.int64)
-  # print(edge_idx)
-  # nodes_features = extract_features(nodes)
+  # pad when the number of nodes is less than truncate size
   while(padding and i < truncate_size):
-    # changed_nodes = torch.cat((changed_nodes,torch.Tensor([i]).int()),0)
     nodes_features = torch.cat((nodes_features,torch.Tensor([0 for x in range(150)]).view(1,-1)),0)
     i += 1
 
@@ -108,6 +102,7 @@ if __name__ == "__main__":
     def get_node_and_edge_encodings():
         root_dir_graphs = "./preprocess_graphs_500/"
         count = 0
+        # This dumps node and edge embeddings for every graph in the root_dir_graphs into pickle files
         for root,dirs,files in os.walk(root_dir_graphs):
             for gfile in files:
                 start = time.time()
@@ -206,3 +201,4 @@ if __name__ == "__main__":
             print(f"Epoch {epoch} --> {time.time()-start}")        
             torch.save(model.state_dict(), "./MiFeMoDEP_SourceCode.pt")
             torch.save(model.rgcn_model.state_dict(), './MiFeMoDEP_SourceCode_PDG_Enc.pt')
+    train_RGCN()
