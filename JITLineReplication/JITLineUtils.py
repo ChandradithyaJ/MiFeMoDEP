@@ -20,7 +20,6 @@ def preprocess_code_line(code, remove_python_common_tokens=False):
     
     else:
         return code.strip()
-    
 
 def preprocess_diff(diff_content):    
     lines = str(diff_content).split("\n")
