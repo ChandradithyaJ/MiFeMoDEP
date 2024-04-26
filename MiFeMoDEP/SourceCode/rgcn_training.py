@@ -156,7 +156,7 @@ if __name__ == "__main__":
                 x = x.view(x.size(0)*x.size(1))
                 x = self.lin(x)
                 return x
-
+        # using dummy neural network to train RGCN
         class NNClassifier(nn.Module):
             def __init__(self):
                 super(NNClassifier, self).__init__()
