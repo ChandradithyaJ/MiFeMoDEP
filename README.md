@@ -16,6 +16,11 @@ Now, output of both of them are concatanated and sent to a random forest classif
 ### Process for **JIT Code Changes**
 The only difference for JIT defect prediction is that the input JIT cdoe changes to the model is preprocessed such that only the source code and the plus/minus characters that represent the addition or removal of a line are present.
 
+## Below are images for MiFeMoDEP: 
+![MiFeMoDEP](./Images_for_readme/MiFeMoDEP.png)
+![MiFeMoDEP Training](./Images_for_readme/rgcn_training.png)
+![Neural Network Classifier](./Images_for_readme/NNclassifier.png)
+
 *Note: To download [`Defectors dataset`](https://zenodo.org/records/7570822)*
 
 ## Test your data on MiFeMoDEP as follows:
